@@ -1,0 +1,28 @@
+:root {
+  font: 16px/1.5 Georgia, Cambria, 'Times New Roman', serif;
+  color: #f1eadc;
+  background: #202321;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  background: #202321;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
