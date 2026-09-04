@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { deleteTask, updateTask } from '../services/taskService'
-import type { Task, TaskPriority } from '../types'
+import type { Task, TaskPriority, TaskStatus } from '../types'
 
 interface UseTaskActionsOptions {
   task: Task
@@ -16,6 +16,7 @@ export function useTaskActions({ task, onSuccess }: UseTaskActionsOptions) {
     task.assigneeId === null ? '' : String(task.assigneeId),
   )
   const [dueDate, setDueDate] = useState(task.dueDate ?? '')
+  const [status, setStatus] = useState<TaskStatus>(task.status ?? 'TODO')
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -29,6 +30,7 @@ export function useTaskActions({ task, onSuccess }: UseTaskActionsOptions) {
     setPriority(task.priority)
     setAssigneeId(task.assigneeId === null ? '' : String(task.assigneeId))
     setDueDate(task.dueDate ?? '')
+    setStatus(task.status ?? 'TODO')
   }
 
   function startEditing() {
@@ -56,6 +58,7 @@ export function useTaskActions({ task, onSuccess }: UseTaskActionsOptions) {
         priority,
         assigneeId: Number(assigneeId) > 0 ? Number(assigneeId) : null,
         dueDate,
+        status,
       })
       setEditing(false)
       onSuccess?.()
@@ -93,6 +96,8 @@ export function useTaskActions({ task, onSuccess }: UseTaskActionsOptions) {
     setAssigneeId,
     dueDate,
     setDueDate,
+    status,
+    setStatus,
     saving,
     deleting,
     error,

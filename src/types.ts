@@ -25,11 +25,12 @@ export interface Task {
   priority: TaskPriority
   assigneeId: number | null
   dueDate: string | null
-  status?: string
+  status?: TaskStatus
   createdAt: string
 }
 
 export type TaskPriority = 'LOW' | 'MED' | 'HIGH'
+export type TaskStatus = 'TODO' | 'IN_PROGRESS' | 'DONE'
 
 export interface NewTask {
   title: string
@@ -37,6 +38,7 @@ export interface NewTask {
   priority: TaskPriority
   assigneeId: number | null
   dueDate: string
+  status: TaskStatus
 }
 
 export type UpdateTask = NewTask

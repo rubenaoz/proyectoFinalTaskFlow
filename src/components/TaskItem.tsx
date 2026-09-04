@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { ConfirmDialog } from './ConfirmDialog'
 import { useTaskActions } from '../hooks/useTaskActions'
-import type { Task, TaskPriority } from '../types'
+import type { Task, TaskPriority, TaskStatus } from '../types'
 
 interface TaskItemProps {
   task: Task
@@ -45,6 +45,11 @@ export function TaskItem({ task, onChanged }: TaskItemProps) {
             <MenuItem value="MED">Medium</MenuItem>
             <MenuItem value="HIGH">High</MenuItem>
           </TextField>
+          <TextField select label="Status" value={actions.status} onChange={(event) => actions.setStatus(event.target.value as TaskStatus)} fullWidth>
+            <MenuItem value="TODO">To do</MenuItem>
+            <MenuItem value="IN_PROGRESS">In progress</MenuItem>
+            <MenuItem value="DONE">Done</MenuItem>
+          </TextField>
           <TextField label="Assignee ID" type="number" value={actions.assigneeId} onChange={(event) => actions.setAssigneeId(event.target.value)} fullWidth inputProps={{ min: 1 }} />
           <TextField label="Due date" type="date" value={actions.dueDate} onChange={(event) => actions.setDueDate(event.target.value)} required fullWidth InputLabelProps={{ shrink: true }} />
           <Stack direction="row" spacing={1}>
@@ -65,7 +70,7 @@ export function TaskItem({ task, onChanged }: TaskItemProps) {
           <Typography variant="subtitle1">{task.title}</Typography>
           <Typography variant="body2" color="text.secondary">{task.description || 'No description'}</Typography>
           <Typography variant="caption" color="text.secondary">
-            Priority: {task.priority} · Assignee: {task.assigneeId ?? 'Unassigned'} · Due date: {task.dueDate}
+            Status: {task.status ?? 'TODO'} · Priority: {task.priority} · Assignee: {task.assigneeId ?? 'Unassigned'} · Due date: {task.dueDate ?? 'No due date'}
           </Typography>
         </Stack>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { createTask } from '../services/taskService'
-import type { TaskPriority } from '../types'
+import type { TaskPriority, TaskStatus } from '../types'
 
 interface UseTaskFormOptions {
   projectId: number | null
@@ -14,6 +14,7 @@ export function useTaskForm({ projectId, projectName, onSuccess }: UseTaskFormOp
   const [priority, setPriority] = useState<TaskPriority>('MED')
   const [assigneeId, setAssigneeId] = useState('')
   const [dueDate, setDueDate] = useState('')
+  const [status, setStatus] = useState<TaskStatus>('TODO')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -28,6 +29,7 @@ export function useTaskForm({ projectId, projectName, onSuccess }: UseTaskFormOp
     setPriority('MED')
     setAssigneeId('')
     setDueDate('')
+    setStatus('TODO')
     setError(null)
   }
 
@@ -47,6 +49,7 @@ export function useTaskForm({ projectId, projectName, onSuccess }: UseTaskFormOp
         priority,
         dueDate,
         assigneeId: Number(assigneeId) > 0 ? Number(assigneeId) : null,
+        status,
       }
 
       await createTask(projectId, taskData)
@@ -71,6 +74,8 @@ export function useTaskForm({ projectId, projectName, onSuccess }: UseTaskFormOp
     setAssigneeId,
     dueDate,
     setDueDate,
+    status,
+    setStatus,
     submitting,
     error,
     valid,

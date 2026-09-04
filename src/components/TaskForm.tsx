@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import type { TaskPriority } from '../types'
+import type { TaskPriority, TaskStatus } from '../types'
 
 interface TaskFormProps {
   projectName: string
@@ -19,6 +19,8 @@ interface TaskFormProps {
   setAssigneeId: (value: string) => void
   dueDate: string
   setDueDate: (value: string) => void
+  status: TaskStatus
+  setStatus: (value: TaskStatus) => void
   submitting: boolean
   error: string | null
   valid: boolean
@@ -37,6 +39,8 @@ export function TaskForm({
   setAssigneeId,
   dueDate,
   setDueDate,
+  status,
+  setStatus,
   submitting,
   error,
   valid,
@@ -74,6 +78,17 @@ export function TaskForm({
         <MenuItem value="LOW">Low</MenuItem>
         <MenuItem value="MED">Medium</MenuItem>
         <MenuItem value="HIGH">High</MenuItem>
+      </TextField>
+      <TextField
+        select
+        label="Status"
+        value={status}
+        onChange={(e) => setStatus(e.target.value as TaskStatus)}
+        fullWidth
+      >
+        <MenuItem value="TODO">To do</MenuItem>
+        <MenuItem value="IN_PROGRESS">In progress</MenuItem>
+        <MenuItem value="DONE">Done</MenuItem>
       </TextField>
       <TextField
         label="Assignee ID"
