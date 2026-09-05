@@ -71,4 +71,4 @@ Endpoints used:
 
 ## What's missing
 
-Right now it doesn't have automated tests or PWA support. Tasks are fetched all at once from the backend and filtered by project on the client side, which works fine at this scale but wouldn't hold up as well with a lot more data. It also uses PUT for updates (replaces the whole resource) instead of PATCH, which would be more appropriate for partial changes. And the JWT lives in `localStorage`, which isn't the safest option against XSS attacks for a real production app — an httpOnly cookie would be the better choice.
+Right now it doesn't have automated tests or PWA support. Tasks are fetched all at once from the backend and filtered by project on the client side, which works fine at this scale but wouldn't hold up as well with a lot more data. It also uses PUT for updates (replaces the whole resource) instead of PATCH, which would be more appropriate for partial changes. And the JWT lives in `localStorage`, which isn't the safest option against XSS attacks for a real production app, an httpOnly cookie would be the better choice.
