@@ -20,7 +20,7 @@ export function ProjectTasksPage() {
   const { projectId } = useParams()
   const projectNumber = Number(projectId)
   const { projects } = useProjects()
-  const { tasks, loading, error, refetch } = useTasks()
+  const { tasks, loading, error, refetch } = useTasks(projectNumber)
   const project = projects.find((item) => item.id === projectNumber)
   const [taskDialogOpen, setTaskDialogOpen] = useState(false)
   const taskForm = useTaskForm({
@@ -28,7 +28,6 @@ export function ProjectTasksPage() {
     projectName: project?.name ?? '',
     onSuccess: () => { refetch(); setTaskDialogOpen(false) },
   })
-  const projectTasks = tasks.filter((task) => task.projectId === projectNumber)
 
   return (
     <Box sx={{ width: '100%', maxWidth: 980, px: { xs: 2, md: 4 }, py: 4, mx: 'auto' }}>
@@ -54,7 +53,7 @@ export function ProjectTasksPage() {
             </DialogContent>
           </Dialog>
           <Paper sx={{ p: 3 }}>
-            <TaskList tasks={projectTasks} loading={loading} error={error} onChanged={refetch} />
+            <TaskList tasks={tasks} loading={loading} error={error} onChanged={refetch} />
           </Paper>
         </>
       )}

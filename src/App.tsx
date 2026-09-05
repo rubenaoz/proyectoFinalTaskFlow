@@ -5,7 +5,7 @@ import { AuthProvider } from './context/AuthContext'
 import { ProtectedRoute } from './ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
 import { LoginPage } from './pages/LoginPage'
-import { ProjectTasksPage } from './pages/ProjectTasksPage.tsx'
+import { ProjectTasksPage } from './pages/ProjectTasksPage'
 
 const theme = createTheme({
   palette: {

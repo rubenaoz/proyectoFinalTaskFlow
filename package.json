@@ -1,10 +1,11 @@
 {
-  "name": "jwt-auth-demo",
+  "name": "taskflow",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build": "tsc -b && vite build",
     "build:pages": "tsc -b && GITHUB_PAGES=true vite build && cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview"
